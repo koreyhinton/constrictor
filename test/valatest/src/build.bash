@@ -5,4 +5,4 @@
 # And Then Run (MSYS2):
 #     ./main.exe
 
-valac *.vala -o main
+valac real/*.vala app.vala main.vala -o main

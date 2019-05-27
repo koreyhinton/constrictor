@@ -1,6 +1,5 @@
-namespace ValaTest {
-
-    public class Printer {
+namespace Src.Real {
+    public class Printer : Object, IPrint {
         private Logger _log;
         public Printer(Logger log) {
             _log = log;
@@ -10,5 +9,4 @@ namespace ValaTest {
             _log.write(message);
         }
     }
-
 }
