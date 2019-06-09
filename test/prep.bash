@@ -19,15 +19,12 @@ class PyLang(constrictor.lang_interface.LangInterface):
         return ''
     def comment(self, text):
         return '# '+text+'\r\n'
-class PyMain(constrictor.main_interface.MainInterface):
-    def get_main(self):
-        return {'$feature1main':{'header':'from classes import *\r\n', 'trailer':''}}
 class PyRoot(constrictor.object_interface.ObjectInterface):
     def name(self):
         return 'App'
     def dependencies(self):
         return [Dep1(), Dep2()]
-class PyConstrictor(constrictor.Constrictor, PyLang, PyMain, PyRoot):
+class PyConstrictor(constrictor.Constrictor, PyLang, PyRoot):
     pass
 class Dep1:
     def name(self):
@@ -45,7 +42,7 @@ class LogContainer:
     def dependencies(self):
         return []
 if __name__ == '__main__':
-    PyConstrictor().generate()
+    PyConstrictor().construction()
 EOF
 
 cat <<EOF > "${batbox}/feature1/classes.py"
@@ -70,4 +67,11 @@ class App:
         assert self.dep1.log is self.dep2.log, 'Reference equality failed'
 EOF
 
-# ...
+# Feature 2 Prep
+mkdir -p "${batbox}/feature4"
+cat <<EOF > "${batbox}/feature4/main.py"
+import pyconstrictor
+from classes import App, Dep1, Dep2, Log, LogContainer
+app = eval(pyconstrictor.PyConstrictor().construction())
+log = app.dep1.log
+EOF

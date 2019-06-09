@@ -5,4 +5,21 @@
 # And Then Run (MSYS2):
 #     ./main.exe
 
+
+# generate main.vala
+echo "" > main.vala
+cat <<EOF >> main.vala
+using Src;
+using Src.Real;
+int main(string[] args) {
+EOF
+export SET PYTHONPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/../../../"
+python ../vala_di_gen.py construction >> main.vala
+cat <<EOF >> main.vala
+    ;
+    return 0;
+}
+EOF
+
+# compile
 valac real/*.vala app.vala main.vala -o main
