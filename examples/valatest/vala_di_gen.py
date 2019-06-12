@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import constrictor
 import examples.valatest.vala_lang as vala_lang
 import examples.valatest.vala_root as vala_root
@@ -9,4 +10,4 @@ class ValaConstrictor(constrictor.Constrictor,
 
 
 if __name__ == '__main__':
-    print(ValaConstrictor().construction())
+    print(ValaConstrictor().command())

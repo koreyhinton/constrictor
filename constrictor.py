@@ -1,5 +1,10 @@
-# Dependency Injection Code Generator Framework
+#!/usr/bin/env python3
+# PYTHON_ARGCOMPLETE_OK
+import argcomplete
+import argparse
 from abc import ABC
+
+# Dependency Injection Code Generator Framework
 from interfaces import object_interface
 from interfaces import lang_interface
 
@@ -17,9 +22,21 @@ def traverse(obj, new_keyword):
 class Constrictor(object_interface.ObjectInterface, lang_interface.LangInterface, ABC):
 
     def construction(self):
-        init_code = super().indent() + traverse(super(), super().new_keyword())# + super().terminate_statement_symbol()
+        init_code = traverse(super(), super().new_keyword())
         gen = init_code
         return gen
+
+    def command(self):
+        cmd_construction = 'construction'
+        cmd_constructors = 'constructors'
+        parser = argparse.ArgumentParser()
+        parser.add_argument('-c', '--command', choices=(cmd_construction, cmd_constructors))
+        argcomplete.autocomplete(parser)
+        args = parser.parse_args()
+        if args.command is None or args.command == cmd_construction:
+            return self.construction()
+        elif args.command == cmd_constructors:
+            raise NotImplementedError
 
 
 if __name__ == '__main__':
