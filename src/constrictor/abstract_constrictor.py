@@ -5,8 +5,8 @@ import argparse
 from abc import ABC
 
 # Dependency Injection Code Generator Framework
-from interfaces import object_interface
-from interfaces import lang_interface
+from constrictor.interfaces import object_interface
+from constrictor.interfaces import lang_interface
 
 
 def traverse(obj, new_keyword):
@@ -29,8 +29,11 @@ class Constrictor(object_interface.ObjectInterface, lang_interface.LangInterface
     def command(self):
         cmd_construction = 'construction'
         cmd_constructors = 'constructors'
+        choices = [cmd_construction]
+        if super().partial_classes():
+            choices = choices.append(cmd_constructors)
         parser = argparse.ArgumentParser()
-        parser.add_argument('-c', '--command', choices=(cmd_construction, cmd_constructors))
+        parser.add_argument('-c', '--command', choices=choices)
         argcomplete.autocomplete(parser)
         args = parser.parse_args()
         if args.command is None or args.command == cmd_construction:

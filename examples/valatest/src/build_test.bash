@@ -7,8 +7,8 @@ using Src;
 using Src.Mock;
 int main(string[] args) {
 EOF
-export SET PYTHONPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/../../../"
-python ../vala_di_gen.py construction >> main_test.vala
+export SET PYTHONPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/../../../src"
+python ../vala_test_gen.py -c construction >> main_test.vala
 cat <<EOF >> main_test.vala
     ;
     VerifyText.instance().verify();

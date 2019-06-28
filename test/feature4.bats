@@ -3,7 +3,7 @@
 load prep
 
 @test "Interpreted language (Python) can construct directly at runtime (#4)" {
-    export set PYTHONPATH="${testdir}/../"
+    export set PYTHONPATH="${testdir}/../src"
     run cp "${batbox}/feature1/pyconstrictor.py" "${batbox}/feature4/pyconstrictor.py"
     run cp "${batbox}/feature1/classes.py" "${batbox}/feature4/classes.py"
     run python "${batbox}/feature4/pyconstrictor.py"

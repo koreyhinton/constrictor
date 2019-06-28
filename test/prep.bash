@@ -67,7 +67,7 @@ class App:
         assert self.dep1.log is self.dep2.log, 'Reference equality failed'
 EOF
 
-# Feature 2 Prep
+# Feature 4 Prep
 mkdir -p "${batbox}/feature4"
 cat <<EOF > "${batbox}/feature4/main.py"
 import pyconstrictor

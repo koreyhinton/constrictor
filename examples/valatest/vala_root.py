@@ -11,6 +11,7 @@ class LogDependency(constrictor.object_interface.ObjectInterface):
 
 
 class PrintDependency(constrictor.object_interface.ObjectInterface):
+
     def name(self):
         return 'Printer'
 
